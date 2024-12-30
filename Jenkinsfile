@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        NETLIFY_SITE_ID = 'd09f099f-1d1e-41ca-9eb4-fddaccb998d7'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
     }
     stages {
@@ -76,6 +75,9 @@ pipeline {
                     reuseNode true
                 }
             }
+            environment {
+                 NETLIFY_SITE_ID = '6f45bac1-7c6a-42f5-9b78-24baaf245332'
+            }
             steps{
                 sh '''
                 node --version
@@ -96,6 +98,9 @@ pipeline {
                     image 'node:20-alpine'
                     reuseNode true
                 }
+            }
+            environment {
+                NETLIFY_SITE_ID = 'd09f099f-1d1e-41ca-9eb4-fddaccb998d7'
             }
             steps{
                 sh '''
