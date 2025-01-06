@@ -12,7 +12,7 @@ pipeline {
         stage('build') {
             agent{
                 docker {
-                    image 'node:18-alpine'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                 stage('Unit test'){
                     agent{
                         docker {
-                            image 'node:18-alpine'
+                            image 'my-playwright'
                             reuseNode true
                         }
                     }
@@ -52,14 +52,13 @@ pipeline {
                 stage('E2E Local'){
                     agent{
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            image 'my-playwright'
                             reuseNode true
                         }
                     }
                     steps{
                         sh '''
-                            npm install serve
-                            node_modules/.bin/serve -s build &
+                            serve -s build &
                             sleep 10
                             npx playwright test  --reporter=html
                         '''
@@ -76,7 +75,7 @@ pipeline {
         stage('Deploy To Stage'){
             agent{
                 docker {
-                    image 'node:18-alpine'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
@@ -87,11 +86,11 @@ pipeline {
                 sh '''
                 node --version
                 npm  --version
-                npm install netlify-cli
-                node_modules/.bin/netlify --version
-                node_modules/.bin/netlify login
-                node_modules/.bin/netlify status
-                node_modules/.bin/netlify deploy --dir=build 
+               
+                netlify --version
+                netlify login
+                netlify status
+                netlify deploy --dir=build 
                 '''
             }
             
