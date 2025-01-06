@@ -99,7 +99,7 @@ pipeline {
         stage('Deploy To Prod'){
             agent{
                 docker {
-                    image 'node:20-alpine'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
@@ -110,11 +110,11 @@ pipeline {
                 sh '''
                 node --version
                 npm  --version
-                npm install netlify-cli
-                node_modules/.bin/netlify --version
-                node_modules/.bin/netlify login
-                node_modules/.bin/netlify status
-                node_modules/.bin/netlify deploy --dir=build --prod
+               
+                netlify --version
+                netlify login
+                netlify status
+                netlify deploy --dir=build --prod
                 '''
             }
             
@@ -122,7 +122,7 @@ pipeline {
         stage('E2E Prod'){
             agent{
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
