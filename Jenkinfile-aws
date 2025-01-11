@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{    
         AWS_DEFAULT_REGION = 'ap-south-1'
-        AWS_ECS_CLUSTER = 'arn:aws:ecs:us-east-1:127214196725:cluster/LearnJenkinsApp-Cluster-Prod'
+        AWS_ECS_CLUSTER = 'LearnJenkinsApp-Cluster-Prod'
         AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service-Prod'
         AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
     }
