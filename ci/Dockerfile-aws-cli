@@ -2,5 +2,3 @@ FROM amazon/aws-cli
 USER root
 RUN amazon-linux-extras install docker
 RUN yum install jq -y
-COPY /var/run/docker.sock /var/run/
-RUN chmod 755 /var/run/docker.sock
