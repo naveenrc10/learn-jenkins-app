@@ -38,6 +38,7 @@ pipeline {
             steps {
                 sh '''
                     jq --version
+                    docker build -t myjenkinsapp .
                 
                 '''
             }
