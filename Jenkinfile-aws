@@ -66,6 +66,8 @@ pipeline {
                         aws --version
                         aws s3 ls
                         sed -i "s|#REPOSITORY#|$AWS_DOCKER_REGISTRY|g" aws/task-definition-prod.json
+                        sed -i "s|#APPNAME#|$APP_NAME|g" aws/task-definition-prod.json
+                        sed -i "s|#APPVERSION#|$REACT_APP_VERSION|g" aws/task-definition-prod.json
                         #LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-definition-prod.json | jq '.taskDefinition.revision')
                         #aws ecs update-service --cluster $AWS_ECS_CLUSTER --service $AWS_ECS_SERVICE_PROD --task-definition $AWS_ECS_TD_PROD:$LATEST_TD_REVISION
                         #aws ecs wait services-stable --cluster $AWS_ECS_CLUSTER --services $AWS_ECS_SERVICE_PROD
