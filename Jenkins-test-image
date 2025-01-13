@@ -54,13 +54,13 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'aws-jenkin-access-key', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
+                
                     sh '''
                        ls /user/share/nginx/html
 
                     '''
                     
-                }
+                
                
             }
         }
