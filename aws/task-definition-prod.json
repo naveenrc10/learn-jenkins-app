@@ -6,7 +6,7 @@
     "containerDefinitions": [
         {
             "name": "learnjenkinsapp",
-            "image": "#IMAGE_NAME#",
+            "image": "#REPOSITORY#/#APPNAME#:#APPVERSION#",
             "portMappings": [
                 {
                     "name": "ngnix-80-tcp",
