@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment{    
         AWS_DEFAULT_REGION = 'ap-south-1'
+        APP_NAME = 'myjenkinsapp'
+        REACT_APP_VERSION = '1.0.$BUILD_ID'
         AWS_ECS_CLUSTER = 'LearnJenkinsApp-Cluster-Prod'
         AWS_ECS_SERVICE_PROD = 'LearnJenkinsApp-Service-Prod'
         AWS_ECS_TD_PROD = 'LearnJenkinsApp-TaskDefinition-Prod'
@@ -37,9 +39,7 @@ pipeline {
 
             steps {
                 sh '''
-                    jq --version
-                    docker build -t myjenkinsapp .
-                
+                    docker build -t $APP_NAME:$REACT_APP_VERSION .
                 '''
             }
         }
